@@ -1,0 +1,32 @@
+CREATE TABLE planodedados (
+	cd_planodados number(6) not null;
+	ds_planodados varchar2(20);
+	cd_operadora number(6);
+		PRIMARY KEY (cd_planodados),
+		FOREIGN KEY (cd_operadora)
+			REFERENCES operadora (cd_operadora));
+
+CREATE SEQUENCE sq_planodados
+	START WITH 1
+	INCREMENT BY 1
+	NOCACHE;
+			
+CREATE TABLE wifi (
+	cd_wifi number(6) not null;
+	ds_ssid varchar2(20);
+		PRIMARY KEY (cd_wifi));
+
+CREATE SEQUENCE sq_wifi
+	START WITH 1
+	INCREMENT BY 1
+	NOCACHE;
+		
+CREATE TABLE acessowifi (
+	cd_acessowifi number(6) not null;
+	cd_wifi number(6) not null;
+	cd_matricula number(6) not null;
+	ds_macadress varchar2(12));
+		FOREIGN KEY (cd_wifi)
+			REFERENCES wifi (cd_wifi),
+		FOREIGN KEY (cd_matricula)
+			REFERENCES usuario (cd_matricula));
